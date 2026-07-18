@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 # JWT
 import jwt
 
+# Application
 from core.settings import settings  # Settings
 
 # Secret and Algo
