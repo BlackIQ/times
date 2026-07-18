@@ -82,6 +82,14 @@ async def change_email(
             status_code=409, detail="New email is same as your current email"
         )
 
+    # Check email exists
+    email_exists = db.query(User).where(User.email == data.email).first()
+    if email_exists:
+        raise HTTPException(
+            status_code=409,
+            detail="Email already exists",
+        )
+
     user.email = data.email
 
     db.commit()
