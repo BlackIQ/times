@@ -31,6 +31,9 @@ class User(BaseModel):
     last_name: Mapped[str] = mapped_column(
         nullable=False,
     )
+    bio: Mapped[str] = mapped_column(
+        nullable=False,
+    )
 
     # Relationships
     notes: Mapped[list["Note"]] = relationship(
