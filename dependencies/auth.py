@@ -19,7 +19,7 @@ SECRET = settings.secret
 ALGORITHM = settings.algorithm
 
 # OAuth Schema
-oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+oauth2_schema = OAuth2PasswordBearer(tokenUrl="/api/auth/signin")
 
 # 401 Execption
 credentials_exception = HTTPException(
