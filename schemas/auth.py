@@ -9,10 +9,13 @@ class SigninSchema(BaseSchema):
 
 
 # Signup Schema
-class SignupSchema(SigninSchema):
+class SignupSchema(BaseSchema):
+    email: str
     username: str
-    first_name: str
-    last_name: str
+    password: str
+    confirm_password: str
+    first_name: str | None = None
+    last_name: str | None = None
 
 
 # Token Schema
