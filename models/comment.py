@@ -1,3 +1,6 @@
+# annotations
+from __future__ import annotations
+
 # SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -30,6 +33,11 @@ class Comment(BaseModel):
         index=True,
         nullable=False,
     )
+    parent_id: Mapped[int | None] = mapped_column(
+        ForeignKey("comments.id"),
+        index=True,
+        nullable=True,
+    )
 
     # Relationships
     user: Mapped["User"] = relationship(
@@ -39,4 +47,13 @@ class Comment(BaseModel):
     post: Mapped["Post"] = relationship(
         "Post",
         back_populates="comments",
+    )
+    parent: Mapped[Comment | None] = relationship(
+        "Comment",
+        remote_side="Comment.id",
+        back_populates="replies",
+    )
+    replies: Mapped[list[Comment]] = relationship(
+        "Comment",
+        back_populates="parent",
     )
