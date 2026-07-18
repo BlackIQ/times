@@ -1,0 +1,42 @@
+# SQLAlchemy
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# Application
+from base import BaseModel  # Base
+
+
+# Comment Model
+class Comment(BaseModel):
+    __tablename__ = "comments"
+
+    # Columns
+    id: Mapped[int] = mapped_column(
+        primary_key=True,
+        index=True,
+    )
+    content: Mapped[str] = mapped_column(
+        nullable=False,
+    )
+
+    # Foreign Keys
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        index=True,
+        nullable=False,
+    )
+    post_id: Mapped[int] = mapped_column(
+        ForeignKey("posts.id"),
+        index=True,
+        nullable=False,
+    )
+
+    # Relationships
+    user: Mapped["User"] = relationship(
+        "User",
+        back_populates="comments",
+    )
+    post: Mapped["Post"] = relationship(
+        "Post",
+        back_populates="comments",
+    )
