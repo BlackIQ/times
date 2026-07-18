@@ -20,28 +20,36 @@ router = APIRouter(
 
 @router.post("/signup", response_model=TokenSchema)
 async def signup(data: SignupSchema, db: Session = Depends(get_db)):
+    # Email
     email_exists = db.query(User).where(User.email == data.email).first()
-
     if email_exists:
         raise HTTPException(
             status_code=409,
             detail="Email already exists",
         )
 
+    # Username
     username_exists = db.query(User).where(User.username == data.username).first()
-
     if username_exists:
         raise HTTPException(
             status_code=409,
             detail="Username already exists",
         )
 
+    # Check Password
+    if data.password != data.confirm_password:
+        raise HTTPException(
+            status_code=409,
+            detail="Passwords are not same",
+        )
+
+    # Create user
     user = User(
+        email=data.email,
+        username=data.username,
+        password=hash_password(data.password),
         first_name=data.first_name,
         last_name=data.last_name,
-        username=data.username,
-        email=data.email,
-        password=hash_password(data.password),
     )
 
     db.add(user)
