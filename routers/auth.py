@@ -18,7 +18,7 @@ router = APIRouter(
 )
 
 
-@router.post("/signuo", response_model=TokenSchema)
+@router.post("/signup", response_model=TokenSchema)
 async def signup(data: SignupSchema, db: Session = Depends(get_db)):
     email_exists = db.query(User).where(User.email == data.email).first()
 
