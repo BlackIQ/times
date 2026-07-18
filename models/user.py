@@ -26,13 +26,13 @@ class User(BaseModel):
         nullable=False,
     )
     first_name: Mapped[str] = mapped_column(
-        nullable=False,
+        nullable=True,
     )
     last_name: Mapped[str] = mapped_column(
-        nullable=False,
+        nullable=True,
     )
     bio: Mapped[str] = mapped_column(
-        nullable=False,
+        nullable=True,
     )
 
     # Relationships
