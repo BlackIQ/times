@@ -6,6 +6,7 @@ from routers import (
     auth,
     post,
     user,
+    note,
 )
 
 # FastAPI Application
@@ -30,5 +31,6 @@ async def hi():
 
 # Routers
 app.include_router(auth.router, prefix="/api")  # Authentication
-app.include_router(post.router, prefix="/api")  # Post
 app.include_router(user.router, prefix="/api")  # User
+app.include_router(post.router, prefix="/api")  # Post
+app.include_router(note.router, prefix="/api")  # Note
