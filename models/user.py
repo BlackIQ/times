@@ -1,5 +1,5 @@
 # SQLAlchemy
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 # Application
 from base import BaseModel  # Base
@@ -9,6 +9,7 @@ from base import BaseModel  # Base
 class User(BaseModel):
     __tablename__ = "users"
 
+    # Columns
     id: Mapped[int] = mapped_column(
         primary_key=True,
         index=True,
@@ -23,4 +24,24 @@ class User(BaseModel):
     )
     password: Mapped[str] = mapped_column(
         nullable=False,
+    )
+    first_name: Mapped[str] = mapped_column(
+        nullable=False,
+    )
+    last_name: Mapped[str] = mapped_column(
+        nullable=False,
+    )
+
+    # Relationships
+    notes: Mapped[list["Note"]] = relationship(
+        "Note",
+        back_populates="user",
+    )
+    posts: Mapped[list["Post"]] = relationship(
+        "Post",
+        back_populates="user",
+    )
+    comments: Mapped[list["Comment"]] = relationship(
+        "Comment",
+        back_populates="user",
     )
