@@ -4,6 +4,7 @@ from fastapi import FastAPI
 # Routers
 from routers import (
     auth,
+    post,
     user,
 )
 
@@ -29,4 +30,5 @@ async def hi():
 
 # Routers
 app.include_router(auth.router, prefix="/api")  # Authentication
+app.include_router(post.router, prefix="/api")  # Post
 app.include_router(user.router, prefix="/api")  # User
