@@ -19,7 +19,10 @@ router = APIRouter(
 
 
 @router.post("/signup", response_model=TokenSchema)
-async def signup(data: SignupSchema, db: Session = Depends(get_db)):
+async def signup(
+    data: SignupSchema,
+    db: Session = Depends(get_db),
+):
     # Email
     email_exists = db.query(User).where(User.email == data.email).first()
     if email_exists:
@@ -66,7 +69,10 @@ async def signup(data: SignupSchema, db: Session = Depends(get_db)):
 
 
 @router.post("/signin", response_model=TokenSchema)
-async def signin(data: SigninSchema, db: Session = Depends(get_db)):
+async def signin(
+    data: SigninSchema,
+    db: Session = Depends(get_db),
+):
     user = db.query(User).where(User.email == data.email).first()
 
     if user is None:
