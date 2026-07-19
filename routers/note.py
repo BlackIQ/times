@@ -54,15 +54,15 @@ async def list_user_deleted_notes(
     return notes
 
 
-@router.get("/{note_slug}", response_model=NoteRead)
+@router.get("/{note_id}", response_model=NoteRead)
 async def get_note(
-    note_slug: str,
+    note_id: int,
     db: Session = Depends(get_db),
 ):
     note = (
         db.query(Note)
         .where(
-            Note.slug == note_slug,
+            Note.id == note_id,
             Note.deleted_at.is_(None),
         )
         .one_or_none()
