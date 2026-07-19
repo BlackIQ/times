@@ -21,7 +21,7 @@ router = APIRouter(
 
 
 @router.get("/user/{user_id}", response_model=list[PostRead])
-async def list_posts(
+async def list_user_posts(
     user_id: int,
     db: Session = Depends(get_db),
 ):
@@ -38,7 +38,7 @@ async def list_posts(
 
 
 @router.get("/trash", response_model=list[PostRead])
-async def list_deleted_posts(
+async def list_user_deleted_posts(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
