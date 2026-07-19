@@ -21,6 +21,10 @@ app = FastAPI(
         {"name": "Note", "description": "Make a fast idea"},
         {"name": "Comment", "description": "Write something for a person"},
     ],
+    servers=[
+        {"url": "http://127.0.0.1:8000", "description": "Development"},
+        {"url": "https://final.mahi.amirhossein.info", "description": "Production"},
+    ],
 )
 
 
