@@ -21,7 +21,7 @@ router = APIRouter(
 
 
 @router.get("/user/{user_id}", response_model=list[NoteRead])
-async def list_notes(
+async def list_user_notes(
     user_id: int,
     db: Session = Depends(get_db),
 ):
@@ -38,7 +38,7 @@ async def list_notes(
 
 
 @router.get("/trash", response_model=list[NoteRead])
-async def list_deleted_notes(
+async def list_user_deleted_notes(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
