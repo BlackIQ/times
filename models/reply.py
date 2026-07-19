@@ -34,7 +34,7 @@ class Reply(BaseModel):
         nullable=False,
     )
     parent_id: Mapped[int | None] = mapped_column(
-        ForeignKey("comments.id"),
+        ForeignKey("replies.id"),
         index=True,
         nullable=True,
     )
@@ -42,18 +42,18 @@ class Reply(BaseModel):
     # Relationships
     user: Mapped["User"] = relationship(
         "User",
-        back_populates="comments",
+        back_populates="replies",
     )
     note: Mapped["Note"] = relationship(
         "Note",
-        back_populates="comments",
-    )
-    parent: Mapped[Reply | None] = relationship(
-        "Comment",
-        remote_side="Comment.id",
         back_populates="replies",
     )
-    sub_comments: Mapped[list[Reply]] = relationship(
-        "Comment",
+    parent: Mapped[Reply | None] = relationship(
+        "Reply",
+        remote_side="Reply.id",
+        back_populates="replies",
+    )
+    sub_reply: Mapped[list[Reply]] = relationship(
+        "Reply",
         back_populates="parent",
     )

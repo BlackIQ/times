@@ -48,3 +48,7 @@ class User(BaseModel):
         "Comment",
         back_populates="user",
     )
+    replies: Mapped[list["Reply"]] = relationship(
+        "Reply",
+        back_populates="user",
+    )
