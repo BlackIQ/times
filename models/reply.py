@@ -51,7 +51,7 @@ class Reply(BaseModel):
     parent: Mapped[Reply | None] = relationship(
         "Reply",
         remote_side="Reply.id",
-        back_populates="replies",
+        back_populates="sub_reply",
     )
     sub_reply: Mapped[list[Reply]] = relationship(
         "Reply",

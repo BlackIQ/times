@@ -51,7 +51,7 @@ class Comment(BaseModel):
     parent: Mapped[Comment | None] = relationship(
         "Comment",
         remote_side="Comment.id",
-        back_populates="replies",
+        back_populates="sub_comments",
     )
     sub_comments: Mapped[list[Comment]] = relationship(
         "Comment",
