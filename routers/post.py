@@ -54,15 +54,15 @@ async def list_user_deleted_posts(
     return posts
 
 
-@router.get("/{post_slug}", response_model=PostRead)
+@router.get("/{post_id}", response_model=PostRead)
 async def get_post(
-    post_slug: str,
+    post_id: int,
     db: Session = Depends(get_db),
 ):
     post = (
         db.query(Post)
         .where(
-            Post.slug == post_slug,
+            Post.id == post_id,
             Post.deleted_at.is_(None),
         )
         .one_or_none()
