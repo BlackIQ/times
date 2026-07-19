@@ -39,3 +39,7 @@ class Note(BaseModel):
         "User",
         back_populates="notes",
     )
+    replies: Mapped[list["Reply"]] = relationship(
+        "Comment",
+        back_populates="note",
+    )
