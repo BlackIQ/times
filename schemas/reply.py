@@ -9,7 +9,7 @@ from schemas.user import UserProfileSchema  # User Schema
 # Reply Create
 class ReplyCreate(BaseSchema):
     content: str
-    post_id: int
+    note_id: int
     parent_id: int | None = None
 
 
@@ -22,7 +22,7 @@ class ReplyUpdate(BaseSchema):
 class ReplyRead(BaseSchema):
     id: int
     content: str
-    post_id: int
+    note_id: int
     parent_id: int | None
     user_id: int
 
