@@ -3,6 +3,7 @@ from fastapi import FastAPI
 
 # Routers
 from routers import (
+    application,
     auth,
     user,
     post,
@@ -17,8 +18,9 @@ app = FastAPI(
     version="1.0.0",
     summary="The last project that Mahi creates FrontEnd for.",
     openapi_tags=[
+        {"name": "Application", "description": "Application relation things"},
         {"name": "Authentication", "description": "OAuth2 Endpoints"},
-        {"name": "User", "description": "OAuth2 Endpoints"},
+        {"name": "User", "description": "Manage your account"},
         {"name": "Post", "description": "Publish what is in your mind"},
         {"name": "Comment", "description": "Write something for a person"},
         {"name": "Note", "description": "Make a fast idea"},
@@ -31,12 +33,8 @@ app = FastAPI(
 )
 
 
-@app.get("/")
-async def hi():
-    return {"message": "Hey there! Welcome to Mahis final project"}
-
-
 # Routers
+app.include_router(application.router, prefix="")
 app.include_router(auth.router, prefix="/api")  # Authentication
 app.include_router(user.router, prefix="/api")  # User
 app.include_router(post.router, prefix="/api")  # Post
