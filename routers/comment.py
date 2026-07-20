@@ -36,6 +36,39 @@ async def list_user_comments(
     return comments
 
 
+@router.get("/post/{post_id}", response_model=list[CommentRead])
+async def list_post_comments(
+    post_id: int,
+    db: Session = Depends(get_db),
+):
+    comments = (
+        db.query(Comment)
+        .where(
+            Comment.post_id == post_id,
+            Comment.parent == None,
+        )
+        .all()
+    )
+
+    return comments
+
+
+@router.get("/childrent/{parent_id}", response_model=list[CommentRead])
+async def list_children_comments(
+    parent_id: int,
+    db: Session = Depends(get_db),
+):
+    comments = (
+        db.query(Comment)
+        .where(
+            Comment.parent_id == parent_id,
+        )
+        .all()
+    )
+
+    return comments
+
+
 @router.post("", response_model=CommentRead)
 async def create_comment(
     comment: CommentCreate,

@@ -36,6 +36,39 @@ async def list_user_replies(
     return replies
 
 
+@router.get("/note/{note_id}", response_model=list[ReplyRead])
+async def list_note_replies(
+    note_id: int,
+    db: Session = Depends(get_db),
+):
+    replies = (
+        db.query(Reply)
+        .where(
+            Reply.note_id == note_id,
+            Reply.parent_id == None,
+        )
+        .all()
+    )
+
+    return replies
+
+
+@router.get("/childrent/{parent_id}", response_model=list[ReplyRead])
+async def list_children_replies(
+    parent_id: int,
+    db: Session = Depends(get_db),
+):
+    replies = (
+        db.query(Reply)
+        .where(
+            Reply.parent_id == parent_id,
+        )
+        .all()
+    )
+
+    return replies
+
+
 @router.post("", response_model=ReplyRead)
 async def create_reply(
     reply: ReplyCreate,
