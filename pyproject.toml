@@ -1,7 +1,16 @@
 [project]
-name = "fastapi-media"
+name = "sky_backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "Amirhossein Blog"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "alembic>=1.19.0",
+    "fastapi[standard]>=0.141.1",
+    "psycopg2-binary>=2.9.12",
+    "pwdlib[argon2]>=0.3.0",
+    "pydantic-settings>=2.15.0",
+    "python-dotenv>=1.2.2",
+    "sqlalchemy>=2.0.51",
+    "websockets>=17.0.1",
+]
