@@ -33,6 +33,3 @@ class PostRead(PostCreate):
     updated_at: datetime
 
     user: UserPublicProfileSchema
-
-    likes_count: int
-    comments_count: int

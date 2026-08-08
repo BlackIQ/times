@@ -36,5 +36,3 @@ class CommentRead(BaseSchema):
     updated_at: datetime
 
     user: UserPublicProfileSchema
-
-    likes_count: int

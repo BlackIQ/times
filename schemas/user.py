@@ -20,8 +20,8 @@ class UserPublicProfileSchema(BaseSchema):
     created_at: datetime
     updated_at: datetime
 
-    followers_count: int
-    following_count: int
+    # followers_count: int
+    # following_count: int
 
 
 # Profile Schema
