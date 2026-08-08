@@ -61,3 +61,19 @@ class User(BaseModel):
         secondary="comment_likes",
         back_populates="liked_by",
     )
+
+    following: Mapped[list["User"]] = relationship(
+        "User",
+        secondary="user_follows",
+        primaryjoin="User.id == UserFollow.follower_id",
+        secondaryjoin="User.id == UserFollow.following_id",
+        back_populates="followers",
+    )
+
+    followers: Mapped[list["User"]] = relationship(
+        "User",
+        secondary="user_follows",
+        primaryjoin="User.id == UserFollow.following_id",
+        secondaryjoin="User.id == UserFollow.follower_id",
+        back_populates="following",
+    )
