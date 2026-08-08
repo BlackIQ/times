@@ -1,5 +1,5 @@
 # SQLAlchemy
-from sqlalchemy import Uuid, ForeignKey
+from sqlalchemy import Uuid, ForeignKey, CheckConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 # UUID
@@ -23,4 +23,11 @@ class UserFollow(BaseModel):
         Uuid,
         ForeignKey("users.id", ondelete="CASCADE"),
         primary_key=True,
+    )
+
+    __table_args__ = (
+        CheckConstraint(
+            "follower_id != following_id",
+            name="ck_user_follows_no_self_follow",
+        ),
     )
