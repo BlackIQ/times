@@ -13,7 +13,6 @@ dependencies = [
     "pyjwt>=2.13.0",
     "python-dotenv>=1.2.2",
     "sqlalchemy>=2.0.51",
-    "uuid>=1.30",
 ]
 
 [tool.fastapi]
