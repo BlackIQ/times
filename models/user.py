@@ -1,5 +1,9 @@
 # SQLAlchemy
+from sqlalchemy import Uuid
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# UUID
+import uuid
 
 # Application
 from base import BaseModel  # Base
@@ -10,8 +14,10 @@ class User(BaseModel):
     __tablename__ = "users"
 
     # Columns
-    id: Mapped[int] = mapped_column(
+    id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         primary_key=True,
+        default=uuid.uuid4,
         index=True,
     )
     username: Mapped[str] = mapped_column(
@@ -36,19 +42,11 @@ class User(BaseModel):
     )
 
     # Relationships
-    notes: Mapped[list["Note"]] = relationship(
-        "Note",
-        back_populates="user",
-    )
     posts: Mapped[list["Post"]] = relationship(
         "Post",
         back_populates="user",
     )
     comments: Mapped[list["Comment"]] = relationship(
         "Comment",
-        back_populates="user",
-    )
-    replies: Mapped[list["Reply"]] = relationship(
-        "Reply",
         back_populates="user",
     )

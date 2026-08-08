@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 # SQLAlchemy
-from sqlalchemy import ForeignKey
+from sqlalchemy import Uuid, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# UUID
+import uuid
 
 # Application
 from base import BaseModel  # Base
@@ -14,8 +17,10 @@ class Comment(BaseModel):
     __tablename__ = "comments"
 
     # Columns
-    id: Mapped[int] = mapped_column(
+    id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         primary_key=True,
+        default=uuid.uuid4,
         index=True,
     )
     content: Mapped[str] = mapped_column(
@@ -23,17 +28,17 @@ class Comment(BaseModel):
     )
 
     # Foreign Keys
-    user_id: Mapped[int] = mapped_column(
+    user_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("users.id"),
         index=True,
         nullable=False,
     )
-    post_id: Mapped[int] = mapped_column(
+    post_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("posts.id"),
         index=True,
         nullable=False,
     )
-    parent_id: Mapped[int | None] = mapped_column(
+    parent_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("comments.id"),
         index=True,
         nullable=True,

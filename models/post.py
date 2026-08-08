@@ -1,6 +1,9 @@
 # SQLAlchemy
-from sqlalchemy import ForeignKey
+from sqlalchemy import Uuid, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# UUID
+import uuid
 
 # Application
 from base import BaseModel  # Base
@@ -11,8 +14,10 @@ class Post(BaseModel):
     __tablename__ = "posts"
 
     # Columns
-    id: Mapped[int] = mapped_column(
+    id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         primary_key=True,
+        default=uuid.uuid4,
         index=True,
     )
     slug: Mapped[str] = mapped_column(
@@ -28,7 +33,7 @@ class Post(BaseModel):
     )
 
     # Foreign Keys
-    user_id: Mapped[int] = mapped_column(
+    user_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("users.id"),
         index=True,
         nullable=False,
