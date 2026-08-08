@@ -6,6 +6,7 @@ from routers import (
     application,
     auth,
     user,
+    follow,
     post,
     comment,
 )
@@ -19,6 +20,7 @@ app = FastAPI(
         {"name": "Application", "description": "Application relation things"},
         {"name": "Authentication", "description": "Authentication Endpoints"},
         {"name": "User", "description": "Manage your account"},
+        {"name": "Follow", "description": "Follow each other"},
         {"name": "Post", "description": "Publish what is in your mind"},
         {"name": "Comment", "description": "Write something for a person"},
     ],
@@ -33,5 +35,6 @@ app = FastAPI(
 app.include_router(application.router, prefix="")  # Application
 app.include_router(auth.router, prefix="/api")  # Authentication
 app.include_router(user.router, prefix="/api")  # User
+app.include_router(follow.router, prefix="/api")  # Follow
 app.include_router(post.router, prefix="/api")  # Post
 app.include_router(comment.router, prefix="/api")  # Comment
