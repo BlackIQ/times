@@ -32,7 +32,7 @@ class User(BaseModel):
         nullable=False,
     )
     first_name: Mapped[str] = mapped_column(
-        nullable=True,
+        nullable=False,
     )
     last_name: Mapped[str] = mapped_column(
         nullable=True,
