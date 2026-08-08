@@ -8,18 +8,25 @@ import uuid
 from base import BaseSchema  # Base
 
 
-# Profile Schema
-class UserProfileSchema(BaseSchema):
+# Public Profile Schema
+class UserPublicProfileSchema(BaseSchema):
     id: uuid.UUID
 
     username: str
-    email: str
     first_name: str
     last_name: str | None = None
     bio: str | None = None
 
     created_at: datetime
     updated_at: datetime
+
+    followers_count: int
+    following_count: int
+
+
+# Profile Schema
+class UserProfileSchema(BaseSchema):
+    email: str
 
 
 # Change profile
