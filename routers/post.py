@@ -37,10 +37,6 @@ async def list_user_posts(
         .all()
     )
 
-    # for post in posts:
-    #     setattr(post, "count_likes", len(post.liked_by))
-    #     setattr(post, "count_comments", len(post.comments))
-
     return posts
 
 

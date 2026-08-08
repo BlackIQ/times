@@ -32,13 +32,10 @@ async def list_user_comments(
         db.query(Comment)
         .where(
             Comment.user_id == user_id,
+            Comment.deleted_at.is_(None),
         )
         .all()
     )
-
-    # for comment in comments:
-    #     setattr(comment, "count_likes", len(comment.liked_by))
-    #     setattr(comment, "count_comments", len(comment.sub_comments))
 
     return comments
 
@@ -60,7 +57,7 @@ async def list_post_comments(
     return comments
 
 
-@router.get("/childrent/{parent_id}", response_model=list[CommentRead])
+@router.get("/children/{parent_id}", response_model=list[CommentRead])
 async def list_children_comments(
     parent_id: uuid.UUID,
     db: Session = Depends(get_db),
@@ -103,7 +100,7 @@ async def update_comment(
         db.query(Comment)
         .where(
             Comment.id == comment_id,
-            Comment.deleted_at.is_not(None),
+            Comment.deleted_at.is_(None),
         )
         .one_or_none()
     )
