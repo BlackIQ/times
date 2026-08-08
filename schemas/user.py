@@ -14,7 +14,7 @@ class UserProfileSchema(BaseSchema):
 
     username: str
     email: str
-    first_name: str | None = None
+    first_name: str
     last_name: str | None = None
     bio: str | None = None
 
@@ -24,7 +24,7 @@ class UserProfileSchema(BaseSchema):
 
 # Change profile
 class ChangeProfileSchema(BaseSchema):
-    first_name: str | None = None
+    first_name: str
     last_name: str | None = None
     bio: str | None = None
 

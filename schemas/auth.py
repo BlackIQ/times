@@ -14,5 +14,5 @@ class SignupSchema(BaseSchema):
     username: str
     password: str
     confirm_password: str
-    first_name: str | None = None
+    first_name: str
     last_name: str | None = None
