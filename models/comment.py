@@ -30,19 +30,19 @@ class Comment(BaseModel):
     # Foreign Keys
     user_id: Mapped[uuid.UUID] = mapped_column(
         Uuid,
-        ForeignKey("users.id"),
+        ForeignKey("users.id", ondelete="CASCADE"),
         index=True,
         nullable=False,
     )
     post_id: Mapped[uuid.UUID] = mapped_column(
         Uuid,
-        ForeignKey("posts.id"),
+        ForeignKey("posts.id", ondelete="CASCADE"),
         index=True,
         nullable=False,
     )
     parent_id: Mapped[uuid.UUID | None] = mapped_column(
         Uuid,
-        ForeignKey("comments.id"),
+        ForeignKey("comments.id", ondelete="CASCADE"),
         index=True,
         nullable=True,
     )

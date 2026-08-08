@@ -35,7 +35,7 @@ class Post(BaseModel):
     # Foreign Keys
     user_id: Mapped[uuid.UUID] = mapped_column(
         Uuid,
-        ForeignKey("users.id"),
+        ForeignKey("users.id", ondelete="CASCADE"),
         index=True,
         nullable=False,
     )
