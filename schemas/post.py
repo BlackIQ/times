@@ -6,7 +6,7 @@ import uuid
 
 # Application
 from base import BaseSchema  # Base
-from schemas.user import UserProfileSchema  # User Schema
+from schemas.user import UserPublicProfileSchema  # User Schema
 
 
 # Create Post
@@ -32,7 +32,7 @@ class PostRead(PostCreate):
     created_at: datetime
     updated_at: datetime
 
-    user: UserProfileSchema
+    user: UserPublicProfileSchema
 
-    # count_likes: int
-    # count_comments: int
+    likes_count: int
+    comments_count: int

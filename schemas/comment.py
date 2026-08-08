@@ -6,7 +6,7 @@ import uuid
 
 # Application
 from base import BaseSchema  # Base
-from schemas.user import UserProfileSchema  # User Schema
+from schemas.user import UserPublicProfileSchema  # User Schema
 
 
 # Comment Create
@@ -19,7 +19,7 @@ class CommentCreate(BaseSchema):
 
 # Update Comment
 class CommentUpdate(BaseSchema):
-    content: str
+    content: str | None = None
 
 
 # Comment Read
@@ -35,7 +35,6 @@ class CommentRead(BaseSchema):
     created_at: datetime
     updated_at: datetime
 
-    user: UserProfileSchema
+    user: UserPublicProfileSchema
 
-    # count_likes: int
-    # count_comments: int
+    likes_count: int
