@@ -14,7 +14,7 @@ import uuid
 from dependencies.db import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
 from schemas.post import PostCreate, PostUpdate, PostRead  # Post Schemas
-from models import Post, User  # Models
+from models import Post, User, PostLike  # Models
 
 # Router
 router = APIRouter(
@@ -36,6 +36,10 @@ async def list_user_posts(
         )
         .all()
     )
+
+    # for post in posts:
+    #     setattr(post, "count_likes", len(post.liked_by))
+    #     setattr(post, "count_comments", len(post.comments))
 
     return posts
 
@@ -256,6 +260,95 @@ async def hard_delete_post(
 
     db.delete(post)
 
+    db.commit()
+
+    return None
+
+
+@router.post("/{post_id}/like", status_code=status.HTTP_204_NO_CONTENT)
+async def like_post(
+    post_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    post = (
+        db.query(Post)
+        .where(
+            Post.id == post_id,
+            Post.deleted_at.is_(None),
+        )
+        .one_or_none()
+    )
+
+    if not post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Post not found",
+        )
+
+    existing_like = (
+        db.query(PostLike)
+        .where(
+            PostLike.user_id == user.id,
+            PostLike.post_id == post.id,
+        )
+        .one_or_none()
+    )
+
+    if existing_like:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Post already liked",
+        )
+
+    like = PostLike(
+        user_id=user.id,
+        post_id=post.id,
+    )
+
+    db.add(like)
+    db.commit()
+
+    return None
+
+
+@router.delete("/{post_id}/like", status_code=status.HTTP_204_NO_CONTENT)
+async def unlike_post(
+    post_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    post = (
+        db.query(Post)
+        .where(
+            Post.id == post_id,
+            Post.deleted_at.is_(None),
+        )
+        .one_or_none()
+    )
+
+    if not post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Post not found",
+        )
+
+    like = (
+        db.query(PostLike)
+        .where(
+            PostLike.user_id == user.id,
+            PostLike.post_id == post.id,
+        )
+        .one_or_none()
+    )
+
+    if not like:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Like not found",
+        )
+
+    db.delete(like)
     db.commit()
 
     return None
