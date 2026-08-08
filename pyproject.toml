@@ -16,3 +16,6 @@ dependencies = [
     "uuid>=1.30",
     "websockets>=17.0.1",
 ]
+
+[tool.fastapi]
+entrypoint = "main:app"
