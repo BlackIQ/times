@@ -14,7 +14,7 @@ import uuid
 from dependencies.db import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
 from schemas.comment import CommentCreate, CommentUpdate, CommentRead  # Comment Schemas
-from models import Comment, User  # Models
+from models import Comment, User, CommentLike  # Models
 
 # Router
 router = APIRouter(
@@ -35,6 +35,10 @@ async def list_user_comments(
         )
         .all()
     )
+
+    # for comment in comments:
+    #     setattr(comment, "count_likes", len(comment.liked_by))
+    #     setattr(comment, "count_comments", len(comment.sub_comments))
 
     return comments
 
@@ -159,5 +163,94 @@ async def delete_comment(
 
     db.commit()
     db.refresh(comment)
+
+    return None
+
+
+@router.post("/{comment_id}/like", status_code=status.HTTP_204_NO_CONTENT)
+async def like_comment(
+    comment_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    comment = (
+        db.query(Comment)
+        .where(
+            Comment.id == comment_id,
+            Comment.deleted_at.is_(None),
+        )
+        .one_or_none()
+    )
+
+    if not comment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Comment not found",
+        )
+
+    existing_like = (
+        db.query(CommentLike)
+        .where(
+            CommentLike.user_id == user.id,
+            CommentLike.comment_id == comment.id,
+        )
+        .one_or_none()
+    )
+
+    if existing_like:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Comment already liked",
+        )
+
+    like = CommentLike(
+        user_id=user.id,
+        comment_id=comment.id,
+    )
+
+    db.add(like)
+    db.commit()
+
+    return None
+
+
+@router.delete("/{comment_id}/like", status_code=status.HTTP_204_NO_CONTENT)
+async def unlike_comment(
+    comment_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    comment = (
+        db.query(Comment)
+        .where(
+            Comment.id == comment_id,
+            Comment.deleted_at.is_(None),
+        )
+        .one_or_none()
+    )
+
+    if not comment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Comment not found",
+        )
+
+    like = (
+        db.query(CommentLike)
+        .where(
+            CommentLike.user_id == user.id,
+            CommentLike.comment_id == comment.id,
+        )
+        .one_or_none()
+    )
+
+    if not like:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Like not found",
+        )
+
+    db.delete(like)
+    db.commit()
 
     return None
