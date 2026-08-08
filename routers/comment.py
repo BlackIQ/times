@@ -7,10 +7,13 @@ from sqlalchemy.orm import Session
 # Datetime
 from datetime import datetime, timezone
 
+# UUID
+import uuid
+
 # Application
 from dependencies.db import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
-from schemas.comment import CommentCreate, CommentUpdate, CommentRead  # Schemas
+from schemas.comment import CommentCreate, CommentUpdate, CommentRead  # Comment Schemas
 from models import Comment, User  # Models
 
 # Router
@@ -22,7 +25,7 @@ router = APIRouter(
 
 @router.get("/user/{user_id}", response_model=list[CommentRead])
 async def list_user_comments(
-    user_id: int,
+    user_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
     comments = (
@@ -38,7 +41,7 @@ async def list_user_comments(
 
 @router.get("/post/{post_id}", response_model=list[CommentRead])
 async def list_post_comments(
-    post_id: int,
+    post_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
     comments = (
@@ -55,7 +58,7 @@ async def list_post_comments(
 
 @router.get("/childrent/{parent_id}", response_model=list[CommentRead])
 async def list_children_comments(
-    parent_id: int,
+    parent_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
     comments = (
@@ -87,7 +90,7 @@ async def create_comment(
 
 @router.patch("/{comment_id}", response_model=CommentRead)
 async def update_comment(
-    comment_id: int,
+    comment_id: uuid.UUID,
     comment_data: CommentUpdate,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -126,7 +129,7 @@ async def update_comment(
 
 @router.delete("/{comment_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_comment(
-    comment_id: int,
+    comment_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):

@@ -2,7 +2,7 @@
 from fastapi import APIRouter
 
 # Application
-from schemas.application import MessageSchema
+from schemas.common import MessageSchema  # Common Schemas
 
 # Router
 router = APIRouter(
@@ -13,11 +13,12 @@ router = APIRouter(
 
 @router.get("/", response_model=MessageSchema)
 async def hi():
-    return {"message": "Hey there! Welcome to Mahis final project"}
+    return {"message": "Hey there! Welcome to Nova Blog API"}
 
 
 @router.get("/health", response_model=MessageSchema)
 async def healthcheck():
+    # TODO: Add some healthcheck stuff
     return {"message": "Everything is running alright"}
 
 

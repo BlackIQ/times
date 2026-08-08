@@ -8,7 +8,8 @@ from sqlalchemy.orm import Session
 from dependencies.db import get_db  # Get DB
 from security.password import hash_password, verify_password  # Password
 from security.token import create_token  # Token
-from schemas.auth import SigninSchema, SignupSchema, TokenSchema  # Schemas
+from schemas.common import TokenSchema  # Common schemas
+from schemas.auth import SigninSchema, SignupSchema  # Authentication Schemas
 from models import User
 
 # Router

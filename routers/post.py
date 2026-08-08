@@ -7,10 +7,13 @@ from sqlalchemy.orm import Session
 # Datetime
 from datetime import datetime, timezone
 
+# UUID
+import uuid
+
 # Application
 from dependencies.db import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
-from schemas.post import PostCreate, PostUpdate, PostRead  # Schemas
+from schemas.post import PostCreate, PostUpdate, PostRead  # Post Schemas
 from models import Post, User  # Models
 
 # Router
@@ -22,7 +25,7 @@ router = APIRouter(
 
 @router.get("/user/{user_id}", response_model=list[PostRead])
 async def list_user_posts(
-    user_id: int,
+    user_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
     posts = (
@@ -56,7 +59,7 @@ async def list_user_deleted_posts(
 
 @router.get("/{post_id}", response_model=PostRead)
 async def get_post(
-    post_id: int,
+    post_id: uuid.UUID,
     db: Session = Depends(get_db),
 ):
     post = (
@@ -103,7 +106,7 @@ async def create_post(
 
 @router.patch("/{post_id}", response_model=PostRead)
 async def update_post(
-    post_id: int,
+    post_id: uuid.UUID,
     post_data: PostUpdate,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -156,7 +159,7 @@ async def update_post(
 
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def soft_delete_post(
-    post_id: int,
+    post_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
@@ -191,7 +194,7 @@ async def soft_delete_post(
 
 @router.post("/{post_id}/restore", status_code=status.HTTP_204_NO_CONTENT)
 async def restore_post(
-    post_id: int,
+    post_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
@@ -226,7 +229,7 @@ async def restore_post(
 
 @router.delete("/{post_id}/force", status_code=status.HTTP_204_NO_CONTENT)
 async def hard_delete_post(
-    post_id: int,
+    post_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):

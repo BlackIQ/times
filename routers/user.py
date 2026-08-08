@@ -13,7 +13,7 @@ from schemas.user import (
     ChangeProfileSchema,
     ChangePasswordSchema,
     ChangeEmailSchema,
-)  # Schemas
+)  # User Schemas
 from models import User  # Models
 
 # Router
@@ -53,15 +53,18 @@ async def change_password(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    # Check new password is equal to confirm password
     if data.new_password != data.confirm_password:
-        raise HTTPException(status_code=409, detail="New passwords are not same")
+        raise HTTPException(
+            status_code=409,
+            detail="New passwords are not same",
+        )
 
-    # Check if current password is right or no
     if not verify_password(data.current_password, user.password):
-        raise HTTPException(status_code=409, detail="Current password is wrong")
+        raise HTTPException(
+            status_code=409,
+            detail="Current password is wrong",
+        )
 
-    # Now confirm is equal to new and user password is same
     new_password_hash = hash_password(data.new_password)
 
     user.password = new_password_hash
@@ -78,13 +81,12 @@ async def change_email(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    # Check is it current email
     if user.email == data.email:
         raise HTTPException(
-            status_code=409, detail="New email is same as your current email"
+            status_code=409,
+            detail="New email is same as your current email",
         )
 
-    # Check email exists
     email_exists = db.query(User).where(User.email == data.email).first()
     if email_exists:
         raise HTTPException(
