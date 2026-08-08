@@ -9,6 +9,9 @@ from fastapi.security import OAuth2PasswordBearer
 # SQLAlchemy
 from sqlalchemy.orm import Session
 
+# UUID
+import uuid
+
 # Application
 from core.settings import settings  # Settings
 from dependencies.db import get_db  # Depenencies
@@ -40,7 +43,7 @@ def get_current_user(
         raise credentials_exception
 
     # User ID from payload
-    user_id: int | None = payload.get("sub")
+    user_id: uuid.UUID | None = payload.get("sub")
 
     if user_id == None:
         raise credentials_exception
