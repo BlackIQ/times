@@ -1,6 +1,9 @@
 # Datetime
 from datetime import datetime
 
+# UUID
+import uuid
+
 # Application
 from base import BaseSchema  # Base
 from schemas.user import UserProfileSchema  # User Schema
@@ -22,8 +25,11 @@ class PostUpdate(BaseSchema):
 
 # Read Post
 class PostRead(PostCreate):
-    id: int
-    user_id: int
+    id: uuid.UUID
+
+    user_id: uuid.UUID
+
     created_at: datetime
     updated_at: datetime
+
     user: UserProfileSchema

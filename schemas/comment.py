@@ -1,6 +1,9 @@
 # Datetime
 from datetime import datetime
 
+# UUID
+import uuid
+
 # Application
 from base import BaseSchema  # Base
 from schemas.user import UserProfileSchema  # User Schema
@@ -9,8 +12,9 @@ from schemas.user import UserProfileSchema  # User Schema
 # Comment Create
 class CommentCreate(BaseSchema):
     content: str
-    post_id: int
-    parent_id: int | None = None
+
+    post_id: uuid.UUID
+    parent_id: uuid.UUID | None = None
 
 
 # Update Comment
@@ -20,11 +24,13 @@ class CommentUpdate(BaseSchema):
 
 # Comment Read
 class CommentRead(BaseSchema):
-    id: int
+    id: uuid.UUID
+
     content: str
-    post_id: int
-    parent_id: int | None
-    user_id: int
+
+    post_id: uuid.UUID
+    parent_id: uuid.UUID | None
+    user_id: uuid.UUID
 
     created_at: datetime
     updated_at: datetime

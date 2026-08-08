@@ -1,18 +1,23 @@
 # Datetime
 from datetime import datetime
 
+# UUID
+import uuid
+
 # Application
 from base import BaseSchema  # Base
 
 
 # Profile Schema
 class UserProfileSchema(BaseSchema):
-    id: int
+    id: uuid.UUID
+
     username: str
     email: str
     first_name: str | None = None
     last_name: str | None = None
     bio: str | None = None
+
     created_at: datetime
     updated_at: datetime
 

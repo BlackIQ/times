@@ -16,9 +16,3 @@ class SignupSchema(BaseSchema):
     confirm_password: str
     first_name: str | None = None
     last_name: str | None = None
-
-
-# Token Schema
-class TokenSchema(BaseSchema):
-    access_token: str
-    token_type: str
