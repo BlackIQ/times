@@ -50,3 +50,14 @@ class User(BaseModel):
         "Comment",
         back_populates="user",
     )
+
+    liked_posts: Mapped[list["Post"]] = relationship(
+        "Post",
+        secondary="post_likes",
+        back_populates="liked_by",
+    )
+    liked_comments: Mapped[list["Comment"]] = relationship(
+        "Comment",
+        secondary="comment_likes",
+        back_populates="liked_by",
+    )
