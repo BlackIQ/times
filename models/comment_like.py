@@ -21,6 +21,6 @@ class CommentLike(BaseModel):
 
     comment_id: Mapped[uuid.UUID] = mapped_column(
         Uuid,
-        ForeignKey("comment.id", ondelete="CASCADE"),
+        ForeignKey("comments.id", ondelete="CASCADE"),
         primary_key=True,
     )
