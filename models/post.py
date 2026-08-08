@@ -34,6 +34,7 @@ class Post(BaseModel):
 
     # Foreign Keys
     user_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         ForeignKey("users.id"),
         index=True,
         nullable=False,
@@ -47,4 +48,10 @@ class Post(BaseModel):
     comments: Mapped[list["Comment"]] = relationship(
         "Comment",
         back_populates="post",
+    )
+
+    liked_by: Mapped[list["User"]] = relationship(
+        "User",
+        secondary="post_likes",
+        back_populates="liked_posts",
     )
