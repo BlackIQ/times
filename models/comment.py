@@ -29,16 +29,19 @@ class Comment(BaseModel):
 
     # Foreign Keys
     user_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         ForeignKey("users.id"),
         index=True,
         nullable=False,
     )
     post_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid,
         ForeignKey("posts.id"),
         index=True,
         nullable=False,
     )
     parent_id: Mapped[uuid.UUID | None] = mapped_column(
+        Uuid,
         ForeignKey("comments.id"),
         index=True,
         nullable=True,
@@ -61,4 +64,10 @@ class Comment(BaseModel):
     sub_comments: Mapped[list[Comment]] = relationship(
         "Comment",
         back_populates="parent",
+    )
+
+    liked_by: Mapped[list["User"]] = relationship(
+        "User",
+        secondary="comment_likes",
+        back_populates="liked_comments",
     )
