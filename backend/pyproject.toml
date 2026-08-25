@@ -1,7 +1,7 @@
 [project]
-name = "nova_backend"
+name = "amirhossein_jornal_backend"
 version = "0.1.0"
-description = "Nova Blog by Amirhossein Media"
+description = "Amirhossein Jornal Backend by Amirhossein"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
