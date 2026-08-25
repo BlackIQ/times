@@ -1,5 +1,10 @@
-# Nova Backend
+# [Amirhossein Jornal](http://jornal.amirhossein.info) Backend
 
-**Nova** is a blog maintransing by [Amirhossein Mohammadi](https://amirhossein.info).
+Backend of [Amirhossein Jornal](http://jornal.amirhossein.info).
 
-> This project is under development. So, you should wait for first release! Thanks.
+## Stack
+
+- FastAPI
+- SQLAlchemy
+- Alembic
+- PostgreSQL
