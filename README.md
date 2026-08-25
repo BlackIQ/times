@@ -1,6 +1,6 @@
-# [Amirhossein Blog](http://blog.amirhossein.info)
+# [Amirhossein Jornal](http://jornal.amirhossein.info)
 
-Source code of my personal blog.
+Source code of my personal jornal.
 
 ## Structure
 
@@ -9,7 +9,7 @@ This is the stucture of project.
 - Frontend
   - Language: TypeScript
   - Framework: Next.js
-  - UI Library: Material UI
+  - UI Library: TailwindCSS
 - Backend
   - Language: Python
   - Framework: FastAPI
