@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 import uuid
 
 # Application
-from dependencies.db import get_db  # Get Database
+from dependencies.database import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
 from models import User, UserFollow  # Models
 

@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 # Application
-from dependencies.db import get_db  # Get Database
+from dependencies.database import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
 from security.password import hash_password, verify_password  # Password
 from schemas.user import (

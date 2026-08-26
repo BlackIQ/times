@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 # Application
-from dependencies.db import get_db  # Get DB
+from dependencies.database import get_db  # Get DB
 from security.password import hash_password, verify_password  # Password
 from security.token import create_token  # Token
 from schemas.common import TokenSchema  # Common schemas

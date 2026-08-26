@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 import uuid
 
 # Application
-from dependencies.db import get_db  # Get Database
+from dependencies.database import get_db  # Get Database
 from dependencies.auth import get_current_user  # Get Current User
 from schemas.comment import CommentCreate, CommentUpdate, CommentRead  # Comment Schemas
 from models import Comment, User, CommentLike  # Models
