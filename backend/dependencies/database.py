@@ -1,5 +1,5 @@
 # Application
-from database.db import session  # Session
+from core.database import session  # Session
 
 
 # Get DB

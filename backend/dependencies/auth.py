@@ -14,7 +14,7 @@ import uuid
 
 # Application
 from core.settings import settings  # Settings
-from dependencies.db import get_db  # Depenencies
+from dependencies.database import get_db  # Depenencies
 from models import User  # Models
 
 # Secret and Algorithm
