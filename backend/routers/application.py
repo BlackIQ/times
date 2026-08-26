@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.get("/", response_model=MessageSchema)
 async def hi():
-    return MessageSchema(message="Hey there! Welcome to Nova Blog API")
+    return MessageSchema(message="Hey there! Welcome to Amirhossein Jornal API")
 
 
 @router.get("/health", response_model=MessageSchema)

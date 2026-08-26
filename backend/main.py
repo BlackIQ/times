@@ -15,7 +15,7 @@ from routers import (
 app = FastAPI(
     title="Nova Backend",
     version="0.1.0",
-    summary="Nova Blog by Amirhossein Media",
+    summary="Amirhossein Jornal Backend by Amirhossein",
     openapi_tags=[
         {"name": "Application", "description": "Application relation things"},
         {"name": "Authentication", "description": "Authentication Endpoints"},
@@ -25,7 +25,7 @@ app = FastAPI(
         {"name": "Comment", "description": "Write something for a person"},
     ],
     servers=[
-        {"url": "https://nova.amirhossein.info", "description": "Production"},
+        {"url": "https://jornal.amirhossein.info", "description": "Production"},
         {"url": "http://127.0.0.1:8000", "description": "Development"},
     ],
 )
