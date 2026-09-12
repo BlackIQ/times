@@ -1,9 +1,8 @@
-# Datetime
-from datetime import datetime
+# Libs
+from datetime import datetime  # Datetime
 
-# SQLAlchemy
-from sqlalchemy import DateTime, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import DateTime, func  # SQLAlchemy
+from sqlalchemy.orm import Mapped, mapped_column  # SQLAlchemy ORM
 
 
 # Base Class: Timestamp

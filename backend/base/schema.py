@@ -1,5 +1,5 @@
-# Pydantic
-from pydantic import BaseModel, ConfigDict
+# Libs
+from pydantic import BaseModel, ConfigDict  # Pydantic
 
 
 # Base Class: Schema
