@@ -1,5 +1,5 @@
-# Password Lib
-from pwdlib import PasswordHash
+# Libs
+from pwdlib import PasswordHash  # Password
 
 # Hash instance
 password_hash = PasswordHash.recommended()

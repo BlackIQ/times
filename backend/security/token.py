@@ -1,14 +1,11 @@
-# Datetime
-from datetime import datetime, timedelta, timezone
+# Libs
+import uuid  # UUID
+from datetime import datetime, timedelta, timezone  # Datetime
 
-# JWT
-import jwt
-
-# UUID
-import uuid
+import jwt  # JWT
 
 # Application
-from core.settings import settings  # Settings
+from core.settings import settings  # Core: Settings
 
 # Secret and Algo
 SECRET = settings.secret
