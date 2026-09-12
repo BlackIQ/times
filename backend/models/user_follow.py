@@ -1,12 +1,11 @@
-# SQLAlchemy
-from sqlalchemy import Uuid, ForeignKey, CheckConstraint
-from sqlalchemy.orm import Mapped, mapped_column
+# Libs
+import uuid  # UUID
 
-# UUID
-import uuid
+from sqlalchemy import Uuid, ForeignKey, CheckConstraint  # SQLAlchemy
+from sqlalchemy.orm import Mapped, mapped_column  # SQLAlchemy ORM
 
 # Application
-from base import BaseModel  # Base
+from base.model import BaseModel  # Base: Model
 
 
 # User-Follow Model
