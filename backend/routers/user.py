@@ -1,20 +1,18 @@
-# FastAPI
-from fastapi import APIRouter, Depends, HTTPException
-
-# SQLAlchemy
-from sqlalchemy.orm import Session
+# Libs
+from fastapi import APIRouter, Depends, HTTPException  # FastAPI
+from sqlalchemy.orm import Session  # SQLAlchemy ORM
 
 # Application
-from dependencies.database import get_db  # Get Database
-from dependencies.auth import get_current_user  # Get Current User
-from security.password import hash_password, verify_password  # Password
+from dependencies.database import get_db  # Dependencies: Database
+from dependencies.auth import get_current_user  # Dependencies: Current User
+from security.password import hash_password, verify_password  # Security: Password
+from models.user import User  # Models: User
 from schemas.user import (
     UserProfileSchema,
     ChangeProfileSchema,
     ChangePasswordSchema,
     ChangeEmailSchema,
-)  # User Schemas
-from models import User  # Models
+)  # Schemas: User
 
 # Router
 router = APIRouter(

@@ -1,16 +1,14 @@
-# FastAPI
-from fastapi import APIRouter, Depends, HTTPException, status
+# Libs
+import uuid  # UUID
 
-# SQLAlchemy
-from sqlalchemy.orm import Session
-
-# UUID
-import uuid
+from fastapi import APIRouter, Depends, HTTPException, status  # FastAPI
+from sqlalchemy.orm import Session  # SQLAlchemy ORM
 
 # Application
-from dependencies.database import get_db  # Get Database
-from dependencies.auth import get_current_user  # Get Current User
-from models import User, UserFollow  # Models
+from dependencies.database import get_db  # Dependencies: Database
+from dependencies.auth import get_current_user  # Dependencies: Current User
+from models.user_follow import UserFollow  # Models: User-Follow
+from models.user import User  # Models: User
 
 # Router
 router = APIRouter(

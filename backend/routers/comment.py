@@ -1,20 +1,21 @@
-# FastAPI
-from fastapi import APIRouter, Depends, HTTPException, status
+# Libs
+import uuid  # UUID
+from datetime import datetime, timezone  # Datetime
 
-# SQLAlchemy
-from sqlalchemy.orm import Session
-
-# Datetime
-from datetime import datetime, timezone
-
-# UUID
-import uuid
+from fastapi import APIRouter, Depends, HTTPException, status  # FastAPI
+from sqlalchemy.orm import Session  # SQLAlchemy ORM
 
 # Application
-from dependencies.database import get_db  # Get Database
-from dependencies.auth import get_current_user  # Get Current User
-from schemas.comment import CommentCreate, CommentUpdate, CommentRead  # Comment Schemas
-from models import Comment, User, CommentLike  # Models
+from dependencies.database import get_db  # Dependencies: Database
+from dependencies.auth import get_current_user  # Dependencies: Current User
+from models.comment import Comment  # Models: Comment
+from models.comment_like import CommentLike  # Models: Comment-Like
+from models.user import User  # Models: User
+from schemas.comment import (
+    CommentCreate,
+    CommentUpdate,
+    CommentRead,
+)  # Schemas: Comment
 
 # Router
 router = APIRouter(

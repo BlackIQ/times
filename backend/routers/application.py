@@ -1,8 +1,8 @@
-# FastAPI
-from fastapi import APIRouter
+# Libs
+from fastapi import APIRouter  # FastAPI
 
 # Application
-from schemas.common import MessageSchema  # Common Schemas
+from schemas.common import MessageSchema  # Schemas: Common
 
 # Router
 router = APIRouter(
