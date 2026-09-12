@@ -1,5 +1,5 @@
-# Pydantic Settings
-from pydantic_settings import BaseSettings, SettingsConfigDict
+# Libs
+from pydantic_settings import BaseSettings, SettingsConfigDict  # Pydantic Settings
 
 
 # Settings Class
