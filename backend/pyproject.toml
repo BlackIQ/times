@@ -1,7 +1,7 @@
 [project]
-name = "amirhossein_jornal_backend"
+name = "the_amir_times"
 version = "0.1.0"
-description = "Amirhossein Jornal Backend by Amirhossein"
+description = "The Amir Times (Backend) by Amirhossein"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [

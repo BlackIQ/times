@@ -17,35 +17,6 @@ wheels = [
 ]
 
 [[package]]
-name = "amirhossein-jornal-backend"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "alembic" },
-    { name = "fastapi", extra = ["standard"] },
-    { name = "psycopg2-binary" },
-    { name = "pwdlib", extra = ["argon2"] },
-    { name = "pydantic-settings" },
-    { name = "pyjwt" },
-    { name = "python-dotenv" },
-    { name = "sqlalchemy" },
-    { name = "websockets" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "alembic", specifier = ">=1.18.5" },
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.139.2" },
-    { name = "psycopg2-binary", specifier = ">=2.9.12" },
-    { name = "pwdlib", extras = ["argon2"], specifier = ">=0.3.0" },
-    { name = "pydantic-settings", specifier = ">=2.14.2" },
-    { name = "pyjwt", specifier = ">=2.13.0" },
-    { name = "python-dotenv", specifier = ">=1.2.2" },
-    { name = "sqlalchemy", specifier = ">=2.0.51" },
-    { name = "websockets", specifier = ">=16.1.1" },
-]
-
-[[package]]
 name = "annotated-doc"
 version = "0.0.5"
 source = { registry = "https://pypi.org/simple" }
@@ -879,6 +850,35 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/92/aa/bf8ead9ed9d965a9290d291c4ac2d30ac1ae1f9b05a1a0ffdf1a05ac8ac6/starlette-1.5.0.tar.gz", hash = "sha256:7d5f63a7e4981a9587fc2a0fbc44cfb6cc4c9181d8c26d7e948871ed5da8c3df", size = 2711789, upload-time = "2026-08-08T07:23:16.504Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e6/6a/a9ff0b4b7603f9498fa419b63ff09e182536ff2f739c85df7f38c0b46781/starlette-1.5.0-py3-none-any.whl", hash = "sha256:9ca76b47375e56f279d7c66651e801ef11167e58557c429be7ec55702d81d4bb", size = 74328, upload-time = "2026-08-08T07:23:14.675Z" },
+]
+
+[[package]]
+name = "the-amir-times"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "alembic" },
+    { name = "fastapi", extra = ["standard"] },
+    { name = "psycopg2-binary" },
+    { name = "pwdlib", extra = ["argon2"] },
+    { name = "pydantic-settings" },
+    { name = "pyjwt" },
+    { name = "python-dotenv" },
+    { name = "sqlalchemy" },
+    { name = "websockets" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alembic", specifier = ">=1.18.5" },
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.139.2" },
+    { name = "psycopg2-binary", specifier = ">=2.9.12" },
+    { name = "pwdlib", extras = ["argon2"], specifier = ">=0.3.0" },
+    { name = "pydantic-settings", specifier = ">=2.14.2" },
+    { name = "pyjwt", specifier = ">=2.13.0" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
+    { name = "sqlalchemy", specifier = ">=2.0.51" },
+    { name = "websockets", specifier = ">=16.1.1" },
 ]
 
 [[package]]

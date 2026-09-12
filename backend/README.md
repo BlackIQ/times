@@ -1,6 +1,6 @@
-# [Amirhossein Jornal](http://jornal.amirhossein.info) Backend
+# [The Amir Times](http://times.amirhossein.info) Backend
 
-Backend of [Amirhossein Jornal](http://jornal.amirhossein.info).
+Backend of [The Amir Times](http://times.amirhossein.info).
 
 ## Stack
 
