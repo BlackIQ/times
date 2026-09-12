@@ -1,5 +1,5 @@
 # Application
-from base import BaseSchema  # Base
+from base.schema import BaseSchema  # Base: Schema
 
 
 # Signin Schema

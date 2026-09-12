@@ -1,12 +1,10 @@
-# Datetime
-from datetime import datetime
-
-# UUID
-import uuid
+# Libs
+import uuid  # UUID
+from datetime import datetime  # Datetime
 
 # Application
-from base import BaseSchema  # Base
-from schemas.user import UserPublicProfileSchema  # User Schema
+from base.schema import BaseSchema  # Base: Schema
+from schemas.user import UserPublicProfileSchema  # Schemas: User
 
 
 # Comment Create
