@@ -1,15 +1,13 @@
-# FastAPI
-from fastapi import FastAPI
+# Libs
+from fastapi import FastAPI  # FastAPI
 
-# Routers
-from routers import (
-    application,
-    auth,
-    user,
-    follow,
-    post,
-    comment,
-)
+# Application
+from routers import application  # Routers: Application
+from routers import auth  # Routers: Authentication
+from routers import user  # Routers: User
+from routers import follow  # Routers: Follow
+from routers import post  # Routers: Post
+from routers import comment  # Routers: Comment
 
 # FastAPI Application
 app = FastAPI(
@@ -23,6 +21,7 @@ app = FastAPI(
         {"name": "Follow", "description": "Follow each other"},
         {"name": "Post", "description": "Publish what is in your mind"},
         {"name": "Comment", "description": "Write something for a person"},
+        {"name": "Like", "description": "Show how you love the post"},
     ],
     servers=[
         {"url": "https://times.amirhossein.info", "description": "Production"},
