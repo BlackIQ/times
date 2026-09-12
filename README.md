@@ -1,6 +1,6 @@
-# [Amirhossein Jornal](http://jornal.amirhossein.info)
+# [The Amir Times](http://times.amirhossein.info)
 
-Source code of my personal jornal.
+Source code of my own Times jornal.
 
 ## Structure
 
@@ -8,8 +8,8 @@ This is the stucture of project.
 
 - Frontend
   - Language: TypeScript
-  - Framework: Next.js
-  - UI Library: TailwindCSS
+  - Framework: -
+  - UI Library: -
 - Backend
   - Language: Python
   - Framework: FastAPI
