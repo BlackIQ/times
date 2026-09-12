@@ -21,7 +21,6 @@ app = FastAPI(
         {"name": "Follow", "description": "Follow each other"},
         {"name": "Post", "description": "Publish what is in your mind"},
         {"name": "Comment", "description": "Write something for a person"},
-        {"name": "Like", "description": "Show how you love the post"},
     ],
     servers=[
         {"url": "https://times.amirhossein.info", "description": "Production"},
