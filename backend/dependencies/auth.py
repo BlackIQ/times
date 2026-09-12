@@ -1,21 +1,16 @@
-# JWT
-import jwt
-from jwt.exceptions import PyJWTError
+# Libs
+import uuid  # UUID
 
-# FastAPI
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
-
-# SQLAlchemy
-from sqlalchemy.orm import Session
-
-# UUID
-import uuid
+from fastapi import Depends, HTTPException, status  # FastAPI
+from fastapi.security import OAuth2PasswordBearer  # FastAPI Security
+from sqlalchemy.orm import Session  # SQLAlchemy ORM
+import jwt  # JWT
+from jwt.exceptions import PyJWTError  # JWT Exceptions
 
 # Application
-from core.settings import settings  # Settings
-from dependencies.database import get_db  # Depenencies
-from models import User  # Models
+from core.settings import settings  # Core: Settings
+from dependencies.database import get_db  # Depenencies: Database
+from models.user import User  # Models: User
 
 # Secret and Algorithm
 SECRET = settings.secret
