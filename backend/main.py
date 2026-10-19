@@ -1,5 +1,6 @@
 # Libs
 from fastapi import FastAPI  # FastAPI
+from fastapi.middleware.cors import CORSMiddleware  # FastAPI CORS
 
 # Application
 from routers import application  # Routers: Application
@@ -26,6 +27,22 @@ app = FastAPI(
         {"url": "https://times.amirhossein.info", "description": "Production"},
         {"url": "http://127.0.0.1:8000", "description": "Development"},
     ],
+)
+
+
+# CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=[
+        "https://times.amirhossein.info",
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://127.0.0.1:3000",
+    ],
+    allow_methods=["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
+    allow_headers=["*"],
 )
 
 
