@@ -1,11 +1,12 @@
 # Libs
 import uuid  # UUID
 
-from sqlalchemy import Uuid  # SQLAlchemy
+from sqlalchemy import Uuid, Enum  # SQLAlchemy
 from sqlalchemy.orm import Mapped, mapped_column, relationship  # SQLAlchemy ORM
 
 # Application
 from base.model import BaseModel  # Base: Model
+from enums.role import RoleEnum  # Enum: Role
 
 
 # User Model
@@ -38,6 +39,12 @@ class User(BaseModel):
     )
     bio: Mapped[str] = mapped_column(
         nullable=True,
+    )
+    role: Mapped[str] = mapped_column(
+        Enum(
+            RoleEnum,
+        ),
+        nullable=False,
     )
 
     # Relationships
