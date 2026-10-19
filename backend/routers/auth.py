@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session  # SQLAlchemy ORM
 from dependencies.database import get_db  # Dependencies: Database
 from security.password import hash_password, verify_password  # Security: Password
 from security.token import create_token  # Security: Token
+
+# from enums.role import RoleEnum  # Enums: Role
 from models.user import User  # Models: User
 from schemas.common import TokenSchema  # Schemas: Common
 from schemas.auth import SigninSchema, SignupSchema  # Schemas: Auth
@@ -22,7 +24,6 @@ async def signup(
     data: SignupSchema,
     db: Session = Depends(get_db),
 ):
-    # Email
     email_exists = db.query(User).where(User.email == data.email).first()
     if email_exists:
         raise HTTPException(
@@ -30,7 +31,6 @@ async def signup(
             detail="Email already exists",
         )
 
-    # Username
     username_exists = db.query(User).where(User.username == data.username).first()
     if username_exists:
         raise HTTPException(
@@ -38,14 +38,12 @@ async def signup(
             detail="Username already exists",
         )
 
-    # Check Password
     if data.password != data.confirm_password:
         raise HTTPException(
             status_code=409,
             detail="Passwords are not same",
         )
 
-    # Create user
     user = User(
         email=data.email,
         username=data.username,
